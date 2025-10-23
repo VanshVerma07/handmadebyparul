@@ -7,9 +7,9 @@
     "price": 7000,
     "currency": "INR",
     "images": [
-      "/product images/peacock painting.jpg",
-      "/product images/peacock2.jpg",
-      "/product images/peacock3.jpg"
+      "/public/product images/peacock painting.jpg",
+      "/public/product images/peacock2.jpg",
+      "/public/product images/peacock3.jpg"
     ],
     "description": "A stunning acrylic painting on canvas, capturing the ethereal beauty of a distant galaxy. The vibrant colors and intricate details make it a perfect centerpiece for any room. Each brushstroke is filled with passion and a love for the cosmos.",
     "shortDescription": "Vibrant acrylic painting of a distant galaxy.",
