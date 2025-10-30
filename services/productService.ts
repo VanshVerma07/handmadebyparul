@@ -4,29 +4,27 @@ let productsCache: Product[] | null = null;
 
 // Function to fetch and cache products
 const loadProducts = async (): Promise<Product[]> => {
-    if (productsCache) {
-        return productsCache;
+  if (productsCache) {
+    return productsCache;
+  }
+  try {
+    console.log("Fetching products from /data/products.json...");
+    const response = await fetch('/data/products.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    try {
-        // Path is relative to the index.html file
-        const response = await fetch('./data/products.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        productsCache = data as Product[];
-        return productsCache;
-    } catch (error) {
-        console.error("Could not load products:", error);
-        return []; // Return empty array on error
-    }
+    const data = await response.json();
+    productsCache = data as Product[];
+    return productsCache;
+  } catch (error) {
+    console.error("Could not load products:", error);
+    return []; // Return empty array on error
+  }
 };
-
 
 export const productService = {
   getProducts: async (): Promise<Product[]> => {
     const products = await loadProducts();
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
     return products;
   },
@@ -36,7 +34,7 @@ export const productService = {
     await new Promise(resolve => setTimeout(resolve, 300));
     return products.find(p => p.slug === slug);
   },
-  
+
   getFeaturedProducts: async (): Promise<Product[]> => {
     const products = await loadProducts();
     await new Promise(resolve => setTimeout(resolve, 300));
